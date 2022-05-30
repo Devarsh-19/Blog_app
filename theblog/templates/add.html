@@ -1,0 +1,204 @@
+
+<style>
+    /* Base */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #dfdfdf;
+}
+
+/* Main Content */
+.main-content {
+    width: 100%;
+    max-width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+/* Editor Wrapper */
+.editor-wrapper{
+    box-shadow: 0 5px 9px 0px rgb(0 0 0 / 12%);
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.basic-padding {
+    padding: 20px;
+}
+
+
+/* Texto Editor Header */
+.text-editor-header {
+    background-color: #fff;
+    padding: 5px;
+}
+
+.text-editor-header .btn {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin-right: 5px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.text-editor-header .btn:hover {
+    background-color: #e5e5e5;
+}
+
+/* Content */
+.content {
+    min-height: 200px;
+    padding: 20px;
+    outline: none;
+    background-color: #fff;
+}
+
+
+
+</style>
+
+
+<script>
+
+    // Elements
+        const elements = document.querySelectorAll(".btn");
+
+        // Event
+        elements.forEach(element => {
+            element.addEventListener('click', () => {
+                let command = element.dataset['element'];
+
+                if (command == 'createLink' || command == 'insertImage') {
+                    let url = prompt('Enter the link here:', 'http://');
+                    document.execCommand(command, false, url);
+
+                } else if (command == 'intoHeader') {
+                    document.execCommand('formatBlock', false, '<h1>');
+
+                } else if (command == 'intoParagraph') {
+                    document.execCommand('formatBlock', false, '<p>');
+
+                } else {
+                    document.execCommand(command, false, null);
+
+                }
+
+            })
+        })
+</script>
+
+{% extends 'style2.html' %}
+{% block content %}
+<h2>ADD POST</h2>
+
+
+<form method="post">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-secondary">POST</button>
+</form>
+
+{% endblock %}
+<body>
+    <div class="main-content">
+    
+        <div class="title-wrapper basic-padding">
+            <h1 class="title">Rich Text Editor</h1>
+        </div>
+    
+        <div class="editor-wrapper basic-padding">
+            <!-- Header Editor -->
+            <div class="text-editor-header">
+                <!-- "Heading" Button -->
+                <button type="button" class="btn" data-element="intoHeader">
+                    <i class="fa fa-header"></i>
+                </button>
+    
+                <!-- "Paragraph" Button -->
+                <button type="button" class="btn" data-element="intoParagraph">
+                    <i class="fa fa-paragraph"></i>
+                </button>
+    
+                <!-- "Bold" Button -->
+                <button type="button" class="btn" data-element="bold">
+                    <i class="fa fa-bold"></i>
+                </button>
+    
+                <!-- "Italic" Button -->
+                <button type="button" class="btn" data-element="italic">
+                    <i class="fa fa-italic"></i>
+                </button>
+    
+                <!-- "Underline" Button -->
+                <button type="button" class="btn" data-element="underline">
+                    <i class="fa fa-underline"></i>
+                </button>
+    
+                <!-- "UL" Button -->
+                <button type="button" class="btn" data-element="insertUnorderedList">
+                    <i class="fa fa-list-ul"></i>
+                </button>
+    
+                <!-- "OL" Button -->
+                <button type="button" class="btn" data-element="insertOrderedList">
+                    <i class="fa fa-list-ol"></i>
+                </button>
+    
+                <!-- "Link" Button -->
+                <button type="button" class="btn" data-element="createLink">
+                    <i class="fa fa-link"></i>
+                </button>
+    
+                <!-- "Justify Left" Button -->
+                <button type="button" class="btn" data-element="justifyLeft">
+                    <i class="fa fa-align-left"></i>
+                </button>
+    
+                <!-- "Justify Center" Button -->
+                <button type="button" class="btn" data-element="justifyCenter">
+                    <i class="fa fa-align-center"></i>
+                </button>
+    
+                <!-- "Justify Right" Button -->
+                <button type="button" class="btn" data-element="justifyRight">
+                    <i class="fa fa-align-right"></i>
+                </button>
+    
+                <!-- "Justify" Button -->
+                <button type="button" class="btn" data-element="justifyFull">
+                    <i class="fa fa-align-justify"></i>
+                </button>
+    
+                <!-- "Image" Button -->
+                <button type="button" class="btn" data-element="insertImage">
+                    <i class="fa fa-image"></i>
+                </button>
+    
+    
+            </div>
+    
+    
+            <!-- Content -->
+            <div class="content" contenteditable="true" placeholder="TR">
+    
+            </div>
+    
+        </div>
+    
+    
+    </div>
+    
+    <!-- Scripts -->
+    <script src="./app.js"></script>
+    <!-- Font Awesome Icons -->
+    <script src="https://use.fontawesome.com/a31a3f8384.js"></script>
+</body>

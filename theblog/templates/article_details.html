@@ -1,0 +1,16 @@
+{% extends 'style2.html' %}
+{% block title %}{{post.title}}{% endblock %}
+
+{% block content %}
+
+
+
+<p>
+    <h1>{{ post.title }}</h1>
+
+    BY:  {{ post.author }}
+
+    <hr><br/>
+    {{  post.body  }}
+</p>
+{% endblock %}
