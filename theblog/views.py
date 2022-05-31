@@ -14,7 +14,7 @@ class HomeView(ListView):
     contexts ={
         'b': 'post.pk',
     }
-    ordering = ['-id']
+    ordering = ['-post_date']
 
 class DetailView(DeleteView):
     model = Post
