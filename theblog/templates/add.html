@@ -1,123 +1,34 @@
 
-<style>
-    /* Base */
-* {
-    padding: 0;
-    margin: 0;
-}
 
-body {
-    font-family: sans-serif;
-    background-color: #dfdfdf;
-}
-
-/* Main Content */
-.main-content {
-    width: 100%;
-    max-width: 600px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-}
-
-/* Editor Wrapper */
-.editor-wrapper{
-    box-shadow: 0 5px 9px 0px rgb(0 0 0 / 12%);
-    overflow: hidden;
-    background-color: #fff;
-}
-
-.basic-padding {
-    padding: 20px;
-}
-
-
-/* Texto Editor Header */
-.text-editor-header {
-    background-color: #fff;
-    padding: 5px;
-}
-
-.text-editor-header .btn {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    margin-right: 5px;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 3px;
-}
-
-.text-editor-header .btn:hover {
-    background-color: #e5e5e5;
-}
-
-/* Content */
-.content {
-    min-height: 200px;
-    padding: 20px;
-    outline: none;
-    background-color: #fff;
-}
-
-
-
-</style>
-
-
-<script>
-
-    // Elements
-        const elements = document.querySelectorAll(".btn");
-
-        // Event
-        elements.forEach(element => {
-            element.addEventListener('click', () => {
-                let command = element.dataset['element'];
-
-                if (command == 'createLink' || command == 'insertImage') {
-                    let url = prompt('Enter the link here:', 'http://');
-                    document.execCommand(command, false, url);
-
-                } else if (command == 'intoHeader') {
-                    document.execCommand('formatBlock', false, '<h1>');
-
-                } else if (command == 'intoParagraph') {
-                    document.execCommand('formatBlock', false, '<p>');
-
-                } else {
-                    document.execCommand(command, false, null);
-
-                }
-
-            })
-        })
-</script>
-
-{% extends 'style2.html' %}
-{% block content %}
-<h2>ADD POST</h2>
-
-
-<form method="post">
-
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-secondary">POST</button>
-</form>
-
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
 <body>
-    <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="yLvaqXM" data-user="vinilsilv"
-        style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-        <span>See the Pen <a href="https://codepen.io/vinilsilv/pen/yLvaqXM">
-                Rich Text Editor</a> by Vinicius Silva (<a href="https://codepen.io/vinilsilv">@vinilsilv</a>)
-            on <a href="https://codepen.io">CodePen</a>.</span>
-    </p>
-    <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
-    <!-- Scripts -->
-    <script src="./app.js"></script>
-    <!-- Font Awesome Icons -->
-    <script src="https://use.fontawesome.com/a31a3f8384.js"></script>
+
+
+    {% extends 'style2.html' %}
+    {% block content %}
+    <h2>ADD POST</h2>
+    
+    
+    <form method="post">
+    
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">POST</button>
+    
+       
+    </form>
+    
+    {% endblock %}
+
 </body>
+</html>
+
+
