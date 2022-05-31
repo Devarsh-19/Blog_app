@@ -148,7 +148,7 @@
                             <h3 class="mb-0">{{post.title}}</h3>
                             <div class="mb-1 text-muted">{{post.title_tags}}</div>
                             <div class="mb-1 text-muted">{{post.post_date}}</div>
-                            <p class="card-text mb-auto">{{b}}</p>
+                            <p class="card-text mb-auto">{{post.body | truncatechars:50}}</p>
                             <a href="{% url 'detail' post.pk %}" class="stretched-link">Continue reading</a>
                         </div>
                         <div class="col-auto d-none d-lg-block">
