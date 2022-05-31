@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.template import loader
 from django.views.generic import ListView, DeleteView, CreateView
+
+from theblog.forms import PostForm
 from .models import Post
 # # Create your views here.
 # def home(request):
@@ -8,6 +11,9 @@ from .models import Post
 class HomeView(ListView):
     model = Post
     template_name = 'home.html'
+    contexts ={
+        'b': 'post.pk',
+    }
     
 
 class DetailView(DeleteView):
@@ -16,5 +22,6 @@ class DetailView(DeleteView):
     
 class AddPost(CreateView):
     model = Post
+    form_class = PostForm
     template_name = 'add.html'
-    fields = '__all__'
+    # fields = '__all__'
