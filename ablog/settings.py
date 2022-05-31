@@ -44,20 +44,23 @@ INSTALLED_APPS = [
 ]
 
 
-CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
 
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
+CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_CONFIGS = {
     'default': {
         # 'toolbar': 'Custom',
-        'width': '461px',
-        'height': 'auto',
+        'width': '170%',
+        'height': '300px',
         # 'toolbar_Custom': [
         #     ['Bold', 'Italic', 'Underline'],
         #     ['NumberedList', 'BulletedList'],
         # ],
     }
 }
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -133,9 +136,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
+CKEDITOR_UPLOAD_PATH = "uploads/"
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATICFILES_DIR = (os.path.join(BASE_DIR, 'static'),)
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

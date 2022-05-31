@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic import ListView, DeleteView, CreateView
+from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 
-from theblog.forms import PostForm
+from  .forms import PostForm, EditForm
 from .models import Post
 # # Create your views here.
 # def home(request):
@@ -25,3 +25,9 @@ class AddPost(CreateView):
     form_class = PostForm
     template_name = 'add.html'
     # fields = '__all__'
+    
+class UpdateView(UpdateView):
+    template_name = 'update_post.html'
+    model = Post
+    form_class= EditForm
+    

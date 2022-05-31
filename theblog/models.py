@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from email.policy import default
 import imp
 import django
@@ -5,14 +6,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime, date
-from ckeditor_uploader.fields import RichTextUploadingField
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
+    header_image = models.ImageField(null= True, blank='True',upload_to='images/')
     title_tag = models.CharField(max_length=255, default="")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    body = RichTextUploadingField(config_name='portal_config')
+    body = RichTextField(blank=True)
 
     post_date = models.DateField(auto_now_add=True)
     

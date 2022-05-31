@@ -1,35 +1,34 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
+
+<head>
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
+    <title>EDIT POST</title>
+
 </head>
+
 <body>
 
 
     {% extends 'style2.html' %}
     {% block content %}
-    <h2>ADD POST</h2>
-    
-    
+    <h2>EDIT POST</h2>
+
+
     <form method="post" enctype="multipart/form-data">
-    
+
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}
-        <button class="btn btn-secondary">POST</button>
-    
-       
+        <button class="btn btn-secondary">UPDATE</button>
+
+
     </form>
-    
+
     {% endblock %}
 
 </body>
+
 </html>
-
-
